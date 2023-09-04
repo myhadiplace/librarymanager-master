@@ -1,0 +1,66 @@
+
+.card {
+ 
+    width: 300px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 2% auto;
+    padding: 20px;
+  }
+
+  .card a {
+    all: unset;
+    cursor: pointer;
+  }
+  .card a:hover {
+    color: rgb(0, 195, 255);
+  }
+
+  
+  .card img {
+    width:100%;
+    height: auto;
+    object-fit: fill;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .card p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+
+  .reserve-btn {
+    
+
+  }
+
+  .delete-btn,.reserve-btn {
+    display: inline-block;
+    background-color: #5635eb;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  .delete-btn:hover {
+    background-color: #cc0000;
+  }
+
+  .reserve-btn:hover {
+    background-color: #3bc703;
+  }

@@ -1,0 +1,27 @@
+
+{%extends 'base.html' %}
+{% load static %}
+{% block css_files%}
+<link rel="stylesheet" href="{% static 'LibManager/css/new_book_form.css' %}"/>
+{%endblock%}
+
+{% block title%} register new user {% endblock%}
+
+{% block content %}
+
+<div class="form-container">
+    <form action="{% url 'LoginUser' %}" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form_control {% if form.field.errors %} errors {% endif %}">
+                {{filed}}
+                {{field.label_tag}}  
+                {{field}}
+                {{field.errors}}
+            </div>
+        {%endfor%}
+        <button type="submit">sign up</button>
+
+    </form>
+</div>
+{% endblock %}

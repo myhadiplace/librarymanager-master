@@ -1,0 +1,32 @@
+
+{%extends 'base.html' %}
+{% load static %}
+{% block css_files%}
+<link rel="stylesheet" href="{% static 'LibManager/css/new_book_form.css' %}"/>
+{%endblock%}
+
+{% block title%} Reserve Book {% endblock%}
+
+{% block content %}
+
+<div class="form-container">
+    {% if reserve_details%}
+     {{reserve_details.title}}   
+    
+    {%endif%}
+    <form action="{% url 'Payment' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1> you reserve {{submited_form_data.book_title}} for {{submited_form_data.reserve_for}} day and you must pay {{submited_form_data.reserve_cost}} toman
+        {% for field in form %}
+            <div class="form_control {% if form.field.errors %} errors {% endif %}">
+                
+                <div class="form-group">
+                    {% csrf_token %} {{ field.label_tag}} <br> {{field}} {{field.errors}}
+                  </div
+            </div>
+        {%endfor%}
+        <button type="submit">Reserve</button>
+
+    </form>
+</div>
+{% endblock %}

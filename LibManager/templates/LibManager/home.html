@@ -1,0 +1,59 @@
+{% extends "base.html"%}
+
+{% load static %}
+
+{% block css_files %} 
+
+<link rel="stylesheet" href="{% static "LibManager/css/home.css" %}"/>
+<link rel="stylesheet" href="{% static "LibManager/css/include/card.css" %}"/>
+
+{% endblock %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %} 
+  <h1>{{token}}</h1>
+    <div class="search-bar">
+      <form action="{% url 'Search' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" class="search-input" placeholder="Search..." name="search_query">
+        <button class="search-button">&#128269;</button>
+      </form>
+    </div>
+
+  <section id="filters">
+    <form method="GET" action="{% url 'FilterBooks' %}">
+      {% csrf_token %}
+      {% for field in filter_form %}
+        {{field.label_tag}}
+        {{field}}
+      {% endfor %}
+      <button type="submit">Filter</button>
+    </form>
+  </section>
+  <section id='sorting'>
+    <form method="GET" action="{% url 'Sort' %}">
+      <label for="price-sort"> sort by price </label>
+      <select name='sort-type' id='price-sort'>
+        <option value='descendig' selected> Descendig </option>
+        <option value="ascending"> Ascending </option>
+      </select>
+      <button type="submit"> sort </button>
+    </form>
+  </section>
+
+    <section id="main">
+        {% for book in books%}
+        {% include "libmanager/include/card.html" %}
+        {% endfor %}
+    </section>
+
+    <section id="second">
+    <button class="new-book-btn">
+        <a class="new-book-link" href="{% url 'AddBook' %}">
+          <span class="button-text">Add New Book</span>
+        </a>
+      </button>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html"%}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static "LibManager/css/include/card.css" %}"/>
+
+{% block title %} Home {% endblock %}
+
+{% block content %} 
+  <div class="card">
+    <img src="{{book.book_image}}" alt="bookImage">
+    <h2> {{book.Title}} </h2>
+    <ul>
+      <li>
+        Ttile: {{book.title}}
+      </li>
+      <li>
+        Author: {{book.author}}
+      </li>
+      <li>
+        Country: {{book.country.name}} </a>
+      </li>
+      <li>
+        Price: {{book.price}}$ 
+      </li>
+    </ul>
+  
+    {% comment %} {% if current_url == '/books/delete' %} {% endcomment %}
+    {% if decoded_token.user_id == 1 %}
+      <form action="{% url 'DeleteBook' book.id  %}" method="POST">
+        {% csrf_token %}
+        <button class='delete-btn' type="submit"> Delete </button>
+      </form>
+    {% endif %}
+    {% if decoded_token and decoded_token.user_id > 1 %}
+      <form action="{% url 'ReserveBook' decoded_token.user_id book.id  %}" method="GET">
+        {% csrf_token %}
+        <button class='reserve-btn' type="submit"> Reserve </button>
+      </form>
+    {% endif %}
+    {% comment %} {% endif %} {% endcomment %}
+
+  </div>
+{% endblock %}
