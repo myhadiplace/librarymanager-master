@@ -1,4 +1,5 @@
 import time
+from django.core.cache import cache
 
 class CircuitBreaker:
     def __init__(self,filure_threshold,reset_timeout):
