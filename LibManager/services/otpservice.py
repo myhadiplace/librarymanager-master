@@ -3,7 +3,6 @@ from abc import ABC ,abstractmethod
 import random
 from datetime import datetime,timedelta
 import random
-import time
 #redis configuration
 import redis
 redis_host = '192.168.1.10'
